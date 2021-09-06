@@ -246,6 +246,7 @@ class ConfigPatch(object):
             obj_name = obj['name']
             rexp = None
             list_match = False
+            has_ssl_profile = False
             if 'match_name' in patch_data:
                 regex_pattern = '^%s$' % patch_data['match_name']
                 rexp = re.compile(regex_pattern)
@@ -254,8 +255,10 @@ class ConfigPatch(object):
                 rexp = re.compile(regex_pattern)
             elif 'match_name_in_list' in patch_data:
                 list_match = obj_name in patch_data['match_name_in_list']
+            elif 'has_ssl_profile' in patch_data:
+                has_ssl_profile = 'ssl_profile_ref' in obj
 
-            if (rexp and rexp.match(obj_name)) or list_match:
+            if (rexp and rexp.match(obj_name)) or list_match or has_ssl_profile:
                 try:
                     self.apply_obj_patch(obj_type, obj, patch_data, new_cfg)
                 except:
