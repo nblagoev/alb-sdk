@@ -65,7 +65,7 @@ class GslbVsConverter(object):
                 "tenant_ref": "/api/tenant/?name=admin",
                 "controller_health_status_enabled": True,
                 "wildcard_match": False,
-                "enabled": vs_state,
+                "enabled": vs_state == "enable",
                 "ttl": ttl,
                 "domain_names": domains,
                 "use_edns_client_subnet": True,
