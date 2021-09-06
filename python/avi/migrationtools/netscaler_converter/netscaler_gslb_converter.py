@@ -1,6 +1,7 @@
 # Copyright 2021 VMware, Inc.
 # SPDX-License-Identifier: Apache License 2.0
 
+#!/usr/bin/env python3.7
 import argparse
 import logging
 import avi.migrationtools
@@ -66,10 +67,8 @@ class NetscalerGSLBConverter(AviConverter):
         gslb_ns_config['bind gslb vserver'] = ns_config.get('bind gslb vserver')
         gslb_ns_config['add server'] = ns_config.get('add server')
         print(gslb_ns_config)
-        # getting meta tag from superclass
-        meta = self.meta(self.tenant, self.controller_version)
         avi_gslb_config = gslb_config_converter.convert(
-            meta, gslb_ns_config, self.controller_ip, self.user, self.password,
+            gslb_ns_config, self.controller_ip, self.user, self.password,
             self.tenant, self.vs_state, self.output_file_path, self.version,
             report_name, self.vs_level_status)
         self.write_output(

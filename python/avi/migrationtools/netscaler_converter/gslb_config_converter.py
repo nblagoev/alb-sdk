@@ -39,7 +39,7 @@ def create_map_for_vs(vs, vip_map, site):
     return vip_map
 
 
-def convert(meta, gslb_config_dict, controller_ip, user_name,
+def convert(gslb_config_dict, controller_ip, user_name,
             password, tenant_name, vs_state, output_dir, version,
             report_name, vs_level_status):
     vip_cluster_map = None
@@ -53,7 +53,6 @@ def convert(meta, gslb_config_dict, controller_ip, user_name,
     avi_gslb_config = None
     try:
         avi_gslb_config = dict()
-        avi_gslb_config['META'] = meta
         gslb_vs_converter = GslbVsConverter()
         avi_config = gslb_vs_converter.convert(
             gslb_config_dict, avi_gslb_config, vs_state, vip_cluster_map)
